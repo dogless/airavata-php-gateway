@@ -34,18 +34,19 @@
                    value="<?php if (isset($_POST['search-value'])) echo $_POST['search-value'] ?>">
         </div>
 
-        <select name="status-type" class="form-control select-status">
-            <option value="ALL">Status</option>
-            <?php
-            foreach ($expStates as $index => $state) {
-                if (isset($input) && $state == $input["status-type"]) {
-                    echo '<option value="' . $state . '" selected>' . $state . '</option>';
-                } else {
-                    echo '<option value="' . $state . '">' . $state . '</option>';
-                }
-            }
-            ?>
-        </select>
+        <!--        <select name="status-type" class="form-control select-status">-->
+        <!--            <option value="ALL">Status</option>-->
+        <!--            --><?php
+        //            foreach ($expStates as $index => $state) {
+        //                if (isset($input) && $state == $input["status-type"]) {
+        //                    echo '<option value="' . $state . '" selected>' . $state . '</option>';
+        //                } else {
+        //                    echo '<option value="' . $state . '">' . $state . '</option>';
+        //                }
+        //            }
+        //
+        ?>
+        <!--        </select>-->
 
         <div class="container select-dates hide">
             <div class="col-md-12">
@@ -133,14 +134,15 @@
                 <th>Description</th>
                 <!--<th>Resource</th>-->
                 <th>Creation Time</th>
-                <th>Status</th>
-                <!--                    <select class="form-control select-status">-->
-                <!--                        <option value="ALL">Status</option>-->
-                <!--                    @foreach( $expStates as $index => $state)-->
-                <!--                        <option value="{{ $state }}">{{ $state }}</option>-->
-                <!--                    @endforeach-->
-                <!--                    </select>-->
-                <!--                </th>-->
+                <!--                <th>Status</th>-->
+                <th>
+                    <select class="form-control select-status">
+                        <option value="ALL">Status</option>
+                        @foreach( $expStates as $index => $state)
+                        <option value="{{ $state }}">{{ $state }}</option>
+                        @endforeach
+                    </select>
+                </th>
             </tr>
 
 
@@ -215,35 +217,31 @@
 
     $(document).ready(function () {
 
-//------------------------Commenting Client Side filtering--------------------------------------
-//            /* script to make status select work on the UI side itself. */
-//
-//            $(".select-status").on("change", function(){
-//                selectedStatus = this.value;
-//
-//                if( selectedStatus == "ALL")
-//                {
-//                    $("table tr").slideDown();
-//                }
-//                else
-//                {
-//                    $("table tr").each(function(index) {
-//                        if (index != 0) {
-//
-//                            $row = $(this);
-//
-//                            var status = $.trim( $row.find("td:last").text() );
-//                            if (status == selectedStatus )
-//                            {
-//                                $(this).slideDown();
-//                            }
-//                            else {
-//                                $(this).slideUp();
-//                            }
-//                        }
-//                    });
-//                }
-//            });
+        /* script to make status select work on the UI side itself. */
+
+        $(".select-status").on("change", function () {
+            selectedStatus = this.value;
+
+            if (selectedStatus == "ALL") {
+                $("table tr").slideDown();
+            }
+            else {
+                $("table tr").each(function (index) {
+                    if (index != 0) {
+
+                        $row = $(this);
+
+                        var status = $.trim($row.find("td:last").text());
+                        if (status == selectedStatus) {
+                            $(this).slideDown();
+                        }
+                        else {
+                            $(this).slideUp();
+                        }
+                    }
+                });
+            }
+        });
 
         /* making datetimepicker work for exp search */
 

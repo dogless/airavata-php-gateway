@@ -243,7 +243,7 @@ class ExperimentController extends BaseController
         $expContainer = ExperimentUtilities::get_expsearch_results_with_pagination(Input::all(), $this->limit,
             ($pageNo - 1) * $this->limit);
 
-        $experimentStates = CommonUtilities::getExpStates();
+        $experimentStates = ExperimentUtilities::getExpStates();
         return View::make('experiment/search', array(
             'input' => Input::all(),
             'pageNo' => $pageNo,
