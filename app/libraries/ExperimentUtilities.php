@@ -556,7 +556,7 @@ class ExperimentUtilities
 
             if ($expId) {
                 /*
-                Utilities::print_success_message("Experiment {$_POST['experiment-name']} created!" .
+                CommonUtilities::print_success_message("Experiment {$_POST['experiment-name']} created!" .
                     ' <a href="experiment_summary.php?expId=' . $expId . '">Go to experiment summary page</a>');
                 */
             } else {
@@ -723,21 +723,21 @@ class ExperimentUtilities
                 case '':
             }
         } catch (InvalidRequestException $ire) {
-            Utilities::print_error_message('InvalidRequestException!<br><br>' . $ire->getMessage());
+            CommonUtilities::print_error_message('InvalidRequestException!<br><br>' . $ire->getMessage());
         } catch (AiravataClientException $ace) {
-            Utilities::print_error_message('AiravataClientException!<br><br>' . $ace->getMessage());
+            CommonUtilities::print_error_message('AiravataClientException!<br><br>' . $ace->getMessage());
         } catch (AiravataSystemException $ase) {
             if ($ase->airavataErrorType == 2) // 2 = INTERNAL_ERROR
             {
-                Utilities::print_info_message('<p>You have not created any experiments yet, so no results will be returned!</p>
+                CommonUtilities::print_info_message('<p>You have not created any experiments yet, so no results will be returned!</p>
                                 <p>Click <a href="create_experiment.php">here</a> to create an experiment, or
                                 <a href="create_project.php">here</a> to create a new project.</p>');
             } else {
-                Utilities::print_error_message('There was a problem with Airavata. Please try again later or report a bug using the link in the Help menu.');
+                CommonUtilities::print_error_message('There was a problem with Airavata. Please try again later or report a bug using the link in the Help menu.');
                 //print_error_message('AiravataSystemException!<br><br>' . $ase->airavataErrorType . ': ' . $ase->getMessage());
             }
         } catch (TTransportException $tte) {
-            Utilities::print_error_message('TTransportException!<br><br>' . $tte->getMessage());
+            CommonUtilities::print_error_message('TTransportException!<br><br>' . $tte->getMessage());
         }
 
         //get values of all experiments
