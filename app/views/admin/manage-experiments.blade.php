@@ -408,10 +408,6 @@ to be uncommented when actually in use.
         $(".add-tenant").slideDown();
     });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ee45c04d94e2cc3daec69dfeaf2651c353df2d64
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
     $('.tree li.parent_li > span').on('click', function (e) {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -425,13 +421,8 @@ to be uncommented when actually in use.
         e.stopPropagation();
     });
 
-<<<<<<< HEAD
-    $(".get-experiment").click(function () {
-        $(".loading-img").removeClass("hide");
-=======
     $('.get-experiment').on('click', function (e) {
         $('.loading-img').removeClass('hide');
->>>>>>> ee45c04d94e2cc3daec69dfeaf2651c353df2d64
         $.ajax({
             url: 'experiment/summary?expId=' + $(".experimentId").val(),
             type: 'get',
