@@ -72,8 +72,17 @@
 
         echo "<td>$applicationInterface->applicationName</td>";
 
-        echo '<td>' . CRUtilities::get_compute_resource($experiment->userConfigurationData
-                ->computationalResourceScheduling->resourceHostId)->hostName . '</td>';
+        echo '<td>';
+        try {
+            $cr = CRUtilities::get_compute_resource($experiment->userConfigurationData
+                ->computationalResourceScheduling->resourceHostId);
+            if (!empty($cr)) {
+                echo $cr->hostName;
+            }
+        } catch (Exception $ex) {
+            //Error while retrieving the CR
+        }
+        echo '</td>';
         echo '<td class="time" unix-time="' . $expValues["experimentTimeOfStateChange"] . '"></td>';
 
 
